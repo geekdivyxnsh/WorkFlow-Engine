@@ -13,6 +13,10 @@ app = FastAPI(title="Workflow Engine", version="0.1.0")
 app.include_router(graph_router)
 app.include_router(websocket_router)
 
+@app.get("/")
+def home():
+    return {"message": "Workflow Engine is running!", "docs": "/docs"}
+
 @app.post("/graph/create_sample", response_model=GraphCreateResponse)
 async def create_sample_graph():
     """Creates the Code Review Mini-Agent graph with pre-defined logic."""
